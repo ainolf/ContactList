@@ -17,22 +17,19 @@ import services.ContactDAO;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-
 @Path("/contacts")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public class ContactResource {
-    // @Inject
-    // InMemoryDataStorage ds;
     @Inject
     ContactDAO ds;
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getData() {
         return Response.ok(ds.retrieveAll()).build();
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     @Path("/retrieve/{nif}")
     public Response getContact(@PathParam("nif") final String nif) {
         if (ds.retrieve(nif) == Contact.NOT_FOUND)
@@ -42,7 +39,6 @@ public class ContactResource {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/create")
     public Response createContact(Contact contact) throws URISyntaxException {
         Contact response = ds.create(contact);
@@ -53,7 +49,6 @@ public class ContactResource {
     }
 
     @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/update")
     public Response updateContact(final Contact contact) throws URISyntaxException {
         Contact result = ds.update(contact);

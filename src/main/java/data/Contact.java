@@ -3,6 +3,8 @@ package data;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.util.Objects;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -30,10 +32,13 @@ public class Contact {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Contact contact = (Contact) o;
-        return Objects.equals(name, contact.name) && Objects.equals(surname, contact.surname) && nif.equals(contact.nif);
+        return Objects.equals(name, contact.name) && Objects.equals(surname, contact.surname)
+                && nif.equals(contact.nif);
     }
 
     @Override
