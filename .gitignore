@@ -36,6 +36,7 @@ nb-configuration.xml
 # Vim
 *.swp
 *.swo
+contact-list.yml
 
 # patch
 *.orig
